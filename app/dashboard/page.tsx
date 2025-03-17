@@ -9,7 +9,7 @@ export default async function DashboardRoute() {
     return(
         <>
             <div>
-                <h1>hello from the DashboardRoute</h1>
+                <h1>hello from the Dashboard Route</h1>
             </div>
             <form
                 action={async () => {
