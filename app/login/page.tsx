@@ -35,7 +35,7 @@ export default async function Login() {
               <Label>Email</Label>
               <Input name="email" type="email" required placeholder="hello@gmail.com" />
             </div>
-            <SubmitButton/>
+            <SubmitButton text="Submit😾"/>
           </form>
         </CardContent>
       </Card>
