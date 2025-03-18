@@ -8,7 +8,6 @@ import { useActionState } from "react";
 import { onboardUser } from "../actions";
 import { useForm } from '@conform-to/react';
 import { parseWithZod } from "@conform-to/zod";
-import { ZodSchema } from "zod";
 import { onboardingSchema } from "../utils/zodSchemas";
 
 
