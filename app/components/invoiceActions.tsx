@@ -16,7 +16,7 @@ export function InvoiceActions() {
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem asChild>
                         <Link href="">
-                            <Pencil className="size-4 mr-2 "/> Edit
+                            <Pencil className="size-4 mr-2"/> Edit
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
