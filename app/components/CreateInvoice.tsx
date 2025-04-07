@@ -20,11 +20,20 @@ import { invoiceSchema } from "../utils/zodSchemas";
 import { formatCurrency } from "../utils/formatCurrency";
 
 
+interface iAppProps {
+    firstName: string;
+    lastName: string;
+    address: string;
+    email: string;
+}
 
-
-export function CreateInvoice() {
-
-
+export function CreateInvoice(  
+     {
+        address,
+        email,
+        firstName,
+        lastName,
+      }: iAppProps) {
 
     const [lastResult, action] = useActionState(createInvoice, undefined);
 
@@ -119,11 +128,11 @@ export function CreateInvoice() {
                         <div>
                             <Label className="mb-2">From</Label>
                             <div className="space-y-2">
-                                <Input name={fields.fromName.name} key={fields.fromName.key} placeholder="Your Name" />
+                                <Input name={fields.fromName.name} key={fields.fromName.key} placeholder="Your Name" defaultValue={firstName + " " + lastName}/>
                                 <p className="text-sm text-red-500">{fields.fromName.errors}</p>
-                                <Input name={fields.fromEmail.name} key={fields.fromEmail.key} placeholder="Your Email" />
+                                <Input name={fields.fromEmail.name} key={fields.fromEmail.key} placeholder="Your Email" defaultValue={email}/>
                                 <p className="text-sm text-red-500">{fields.fromEmail.errors}</p>
-                                <Input name={fields.fromAddress.name} key={fields.fromAddress.key} placeholder="Your Address" />
+                                <Input name={fields.fromAddress.name} key={fields.fromAddress.key} placeholder="Your Address" defaultValue={address}/>
                                 <p className="text-sm text-red-500">{fields.fromAddress.errors}</p>
                             </div>
                         </div>

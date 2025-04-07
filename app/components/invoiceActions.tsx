@@ -3,7 +3,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { CheckCircle, DownloadCloud, Mail, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
 
-export function InvoiceActions() {
+
+
+interface iAppProps {
+    id: string;
+    status: string;
+}
+
+export function InvoiceActions({id}: iAppProps) {
     return(
         <>
             <DropdownMenu>
@@ -15,28 +22,28 @@ export function InvoiceActions() {
 
                 <DropdownMenuContent align="end">
                     <DropdownMenuItem asChild>
-                        <Link href="">
+                        <Link href={`/dashboard/invoices/${id}`}>
                             <Pencil className="size-4 mr-2"/> Edit
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                        <Link href="">
-                            <DownloadCloud className="size-4 mr-2 "/> Download invoice
+                        <Link href={`/api/invoice/${id}`} target="_blank">
+                            <DownloadCloud className="size-4 mr-2"/> Download invoice
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                         <Link href="">
-                            <Mail className="size-4 mr-2 "/> Reminder Email
+                            <Mail className="size-4 mr-2"/> Reminder Email
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                         <Link href="">
-                            <Trash className="size-4 mr-2 "/> Delete
+                            <Trash className="size-4 mr-2"/> Delete
                         </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
                         <Link href="">
-                            <CheckCircle className="size-4 mr-2 "/> Mark as Paid
+                            <CheckCircle className="size-4 mr-2"/> Mark as Paid
                         </Link>
                     </DropdownMenuItem>
                 </DropdownMenuContent>
