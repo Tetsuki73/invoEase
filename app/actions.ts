@@ -135,8 +135,8 @@ export async function editInvoice(prevState: any, formData: FormData) {
   });
 
   const sender = {
-    email: "hello@demomailtrap.com",
-    name: "Jan Marshal",
+    email: "hello@demomailtrap.co",
+    name: "Mailtrap Test",
   };
 
   emailClient.send({
@@ -157,6 +157,37 @@ export async function editInvoice(prevState: any, formData: FormData) {
         process.env.NODE_ENV !== "production"
           ? `http://localhost:3000/api/invoice/${data.id}`
           : `https://invoice-marshal.vercel.app/api/invoice/${data.id}`,
+    },
+  });
+
+  return redirect("/dashboard/invoices");
+}
+
+export async function DeleteInvoice(invoiceId: string) {
+  const session = await requireUser();
+
+  const data = await prisma.invoice.delete({
+    where: {
+      userId: session.user?.id,
+      id: invoiceId,
+    },
+  });
+
+  return redirect("/dashboard/invoices");
+}
+
+
+
+export async function MarkAsPaidAction(invoiceId: string) {
+  const session = await requireUser();
+
+  const data = await prisma.invoice.update({
+    where: {
+      userId: session.user?.id,
+      id: invoiceId,
+    },
+    data: {
+      status: "PAID",
     },
   });
 

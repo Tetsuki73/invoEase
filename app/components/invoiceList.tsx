@@ -4,6 +4,7 @@ import prisma from "../utils/db";
 import { requireUser } from "../utils/hooks";
 import { formatCurrency } from "../utils/formatCurrency";
 import { Badge } from "@/components/ui/badge";
+import { EmptyState } from "./EmptyState";
 
 
 async function getDtata(userId: string) {
@@ -34,8 +35,11 @@ export default async function InvoiceList(){
     const session = await requireUser();
     const data = await getDtata(session.user?.id as string);
     return(
-        <>
-            <Table>
+        <>`
+            {data.length === 0 ? (
+              <EmptyState title="No invoices found" description="Create a invoice to get started" buttontext="create invoice" href="/dashboard/invoices/create"/>
+            ):(
+              <Table>
                 <TableHeader>
                     <TableRow>
                         <TableHead>Invoice ID</TableHead>
@@ -67,12 +71,14 @@ export default async function InvoiceList(){
                   }).format(invoice.createdAt)}
                 </TableCell>
                 <TableCell className="text-right">
-                  <InvoiceActions id={invoice.id} status={""}/>
+                  <InvoiceActions id={invoice.id} status={invoice.status}/>
                 </TableCell>
               </TableRow>
             ))}
                 </TableBody>
             </Table>
+            )}
+            
         </>
     )
 }
